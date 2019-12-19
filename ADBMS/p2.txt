@@ -1,0 +1,103 @@
+1)Create a trigger which displays a message “Employee added” after inserting a new record into the employee table. 
+CREATE OR REPLACE TRIGGER emp_alert_trig
+    BEFORE INSERT ON emp1
+    FOR EACH ROW
+    BEGIN
+       dbms_output.put_line('New employees are about to be added');
+    END;
+    /
+Trigger created.
+insert into emp1 values(101,'xyz');
+New employees are about to be added
+
+1 row(s) inserted.
+
+0.01 seconds
+2)
+Create a trigger that will cause an error message and display old and new salary when an update occurs that would result in a salary increase greater than 2000 of the current salary
+CREATE OR REPLACE TRIGGER emp_alert_trig
+    AFTER UPDATE ON emp1
+    FOR EACH ROW 
+       WHEN(NEW.SAL>=OLD.SAL+2000)
+    BEGIN
+              dbms_output.put_line('Employee salary modified');
+           
+    END;
+/
+
+Trigger created.
+update   emp1 set sal=sal+2000 where eid in(101);
+Employee salary modified
+
+1 row(s) updated.
+
+0.01 seconds
+3)
+Create a trigger before employee detail is deleted, it also modifies the data into the department table.
+EMP( empno,name,salary,deptno,designation)
+DEPT(deptno,name,noofemployee,Total_salary)
+ CREATE OR REPLACE TRIGGER emp
+    BEFORE Delete ON emp
+    FOR EACH ROW 
+       declare
+       dept emp.deptno%type;
+    BEGIN
+              dept:= :OLD.deptno;
+
+              delete  dept where deptno = dept;    
+    END;
+
+
+
+
+
+
+Trigger created.
+
+0.03 seconds
+delete  emp where deptno = 2;
+1 row(s) deleted.
+
+0.00 seconds
+4)
+Create a login table Login(ID,username,login_date)
+Create a trigger which will display current user and current date before insert the record and update the user and login_date with current user and current date
+*take the current username in username field of Login table.
+*select user from dual;
+ CREATE OR REPLACE TRIGGER emp1
+    BEFORE UPDATE ON Login
+    FOR EACH ROW 
+       declare
+       user    login.username%type;
+       login_d login.login_date%type;
+    BEGIN
+              user:= :old.username;
+              login_d:= :new.login_date;
+              dbms_output.put_line(user);
+              dbms_output.put_line(login_d);
+
+    END;
+Triger is creates
+DECLARE
+ v VARCHAR2(30);
+ d date;
+BEGIN
+V := USER;
+select current_date into d from dual;
+update Login set login_date=d where username=V;
+
+END;
+ANONYMOUS
+12/15/2019
+
+Statement processed.
+
+0.00 seconds
+5)Create table Temp(no integer,name char(10)) . and insert the 5 records;
+Create a trigger that 1) display all record of table and 2) display massage (‘table is about deleted’) 3) delete all records before drop the table Temp.
+create table Temp(
+no int,
+name varchar(10)
+);
+
+

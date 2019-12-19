@@ -1,0 +1,315 @@
+1) Create table client_master
+SQL> create table client_master(
+  2  clientno varchar2 (6),
+  3  name varchar2 (20),
+  4  address1 varchar2 (30),
+  5  address2 varchar2 (30),
+  6  city varchar2 (15),
+  7  pincode number(8),
+  8  state varchar2 (15),
+  9  baldue decimal(10,2)
+ 10   );
+
+Table created.
+2) create table product_master
+SQL> create table product_master(
+  2  productno varchar2 (6),
+  3  description varchar2 (15),
+  4  profitpercent decimal(4,2),
+  5  unitmeasure varchar2 (10),
+  6  qtyonhand number(8),
+  7  reordervl number(8),
+  8  sellprice decimal(8,2),
+  9  costprice decimal(8,2)
+ 10  );
+
+Table created.
+3) SALESMAN_MASTER table
+SQL> create table salesman_master(
+  2  salesmanno varchar2 (6),
+  3  salesmanname varchar2 (20),
+  4  address1 varchar2 (30),
+  5  address2 varchar2 (30),
+  6  city varchar2 (20),
+  7  pincode number(8),
+  8  state varchar2 (20),
+  9  salamt decimal(8,2),
+ 10  tgttoget decimal(6,2),
+ 11  ytdsales decimal(6,2),
+ 12  remarks varchar2 (20)
+ 13  );
+
+Table created.
+			client_master table values
+SQL> insert into client_master values('C00001','Korth sudarshan','xyz','pqr','Mumbai',400054,'Maharashtra',15000);
+
+1 row created.
+
+SQL> insert into client_master values('C00002','Mamta Muzumdar','xyz','pqr','Madras',780001,'Tamil Nadu',0);
+
+1 row created.
+
+SQL> insert into client_master values('C00003','Chhaya Bankar','xyz','pqr','Mumbai',400057,'Maharashtra',5000);
+
+1 row created.
+
+SQL> insert into client_master values('C00004','Aswini Joshi','xyz','pqr','Bangalore',560001,'Karnataka',0);
+
+1 row created.
+
+SQL> insert into client_master values('C00005','Hansel Colaco','xyz','pqr','Mumbai',400060,'Maharashtra',2000);
+
+1 row created.
+
+SQL> insert into client_master values('C00006','Deepak Sharama','xyz','pqr','Mangalore',560050,'Karnataka',0);
+
+1 row created.
+
+SQL>
+SQL> insert into product_master values('P00001','T-Shirts',5,'Piece',200,50,350,250);
+
+1 row created.
+
+SQL>  insert into product_master values('P0345','Shirts',6,'Piece',150,50,500,350);
+
+1 row created.
+
+SQL>  insert into product_master values('P06734','Cotton Jeans',5,'Piece',100,20,600,450);
+
+1 row created.
+
+SQL>  insert into product_master values('P07865','Jeans',5,'Piece',100,20,750,500);
+
+1 row created.
+
+SQL>  insert into product_master values('P07868','Trodusers',2,'Piece',150,50,850,550);
+
+1 row created.
+
+SQL>  insert into product_master values('P07885','Pull Overs',2.5,'Piece',80,30,700,450);
+
+1 row created.
+
+SQL>  insert into product_master values('P07965','Denim Shirts',4,'Piece',100,4,350,250);
+
+1 row created.
+
+SQL>  insert into product_master values('P07975','Lycra Tops',5,'Piece',70,30,300,175);
+
+1 row created.
+
+SQL>  insert into product_master values('P08865','Skirts',5,'Piece',75,30,450,300);
+
+1 row created.
+
+SQL> insert into salesman_master values('S00001', 'Aman', 'A/14', 'Worli' ,'Mumbai', 400002, 'Maharashtra', 3000 ,100 ,50, 'Good');
+
+1 row created.
+
+SQL> insert into salesman_master values('S00002', 'Omkar',' 65',' Nariman',' Mumbai', 400001 ,'Maharashtra', 3000, 200, 100, 'Good');
+
+1 row created.
+
+SQL> insert into salesman_master values('S00003', 'Ray', 'P-7', 'Bandra', 'Mumbai', 400032 ,'Maharashtra', 3000, 200 ,100, 'Good');
+
+1 row created.
+
+SQL> insert into salesman_master values('S00004', 'Ashish', 'A/5', 'Juhu',' Mumbai', 400044,' Maharashtra', 3500, 200, 150,' Good');
+
+1 row created.
+SQL>
+     \Query
+1)Find out the names of all the clients.
+SQL> select name from client_master;
+
+NAME
+--------------------
+Korth sudarshan
+Mamta Muzumdar
+Chhaya Bankar
+Aswini Joshi
+Hansel Colaco
+Deepak Sharama
+
+6 rows selected.
+2)Retrieve the entire contents of the Client_Master table.
+SQL> select * from client_master;
+
+CLIENT NAME                 ADDRESS1
+------ -------------------- ------------------------------
+ADDRESS2                       CITY               PINCODE STATE
+------------------------------ --------------- ---------- ---------------
+    BALDUE
+----------
+C00001 Korth sudarshan      xyz
+pqr                            Mumbai              400054 Maharashtra
+     15000
+
+C00002 Mamta Muzumdar       xyz
+pqr                            Madras              780001 Tamil Nadu
+         0
+
+CLIENT NAME                 ADDRESS1
+------ -------------------- ------------------------------
+ADDRESS2                       CITY               PINCODE STATE
+------------------------------ --------------- ---------- ---------------
+    BALDUE
+----------
+
+C00003 Chhaya Bankar        xyz
+pqr                            Mumbai              400057 Maharashtra
+      5000
+
+C00004 Aswini Joshi         xyz
+pqr                            Bangalore           560001 Karnataka
+
+CLIENT NAME                 ADDRESS1
+------ -------------------- ------------------------------
+ADDRESS2                       CITY               PINCODE STATE
+------------------------------ --------------- ---------- ---------------
+    BALDUE
+----------
+         0
+
+C00005 Hansel Colaco        xyz
+pqr                            Mumbai              400060 Maharashtra
+      2000
+
+C00006 Deepak Sharama       xyz
+
+CLIENT NAME                 ADDRESS1
+------ -------------------- ------------------------------
+ADDRESS2                       CITY               PINCODE STATE
+------------------------------ --------------- ---------- ---------------
+    BALDUE
+----------
+
+C00006 Deepak Sharama       xyz
+pqr                            Mangalore           560050 Karnataka
+         0
+
+
+6 rows selected.
+
+SQL>
+3)Retrieve the list of names, city and the state of all clients.
+SQL> select  name,city,state from client_master;
+
+NAME                 CITY            STATE
+-------------------- --------------- ---------------
+Korth sudarshan      Mumbai          Maharashtra
+Mamta Muzumdar       Madras          Tamil Nadu
+Chhaya Bankar        Mumbai          Maharashtra
+Aswini Joshi         Bangalore       Karnataka
+Hansel Colaco        Mumbai          Maharashtra
+Deepak Sharama       Mangalore       Karnataka
+
+6 rows selected.
+ 
+SQL>
+4)List the various products available from the Product_Master table.
+SQL> select productno from product_master;
+
+PRODUC
+------
+P00001
+P0345
+P06734
+P07865
+P07868
+P07885
+P07965
+P07975
+P08865
+
+9 rows selected.
+5)List all the clients who are located in Mumbai.
+SQL> select * from client_master where city='Mumbai';
+
+CLIENT NAME                 ADDRESS1
+------ -------------------- ------------------------------
+ADDRESS2                       CITY               PINCODE STATE
+------------------------------ --------------- ---------- ---------------
+    BALDUE
+----------
+C00001 Korth sudarshan      xyz
+pqr                            Mumbai              400054 Maharashtra
+     15000
+
+C00003 Chhaya Bankar        xyz
+pqr                            Mumbai              400057 Maharashtra
+      5000
+
+CLIENT NAME                 ADDRESS1
+------ -------------------- ------------------------------
+ADDRESS2                       CITY               PINCODE STATE
+------------------------------ --------------- ---------- ---------------
+    BALDUE
+----------
+
+C00005 Hansel Colaco        xyz
+pqr                            Mumbai              400060 Maharashtra
+      2000
+6) Find the names of salesmen who have a salary equal to Rs. 3000.
+SQL> select salesmanname from salesman_master where salamt =3000;
+
+SALESMANNAME
+--------------------
+Aman
+Omkar
+Ray
+
+SQL>
+7)Change the city of ClientNO ‘C00005’ to ‘Bangalore’.
+SQL> update  client_master set city='Bangalore' where clientno = 'C00005';
+
+1 row updated.
+
+SQL>
+8)Change the BalDue of ClientNo ‘C00001’ to Rs. 1000.
+ SQL> update  client_master set baldue=1000 where clientno = 'C00001';
+
+1 row updated.
+
+SQL>
+9)Change the cost price of ‘Trousers’ to Rs. 950.00.
+SQL> update product_master set costprice=950 where description='Trousers';
+
+0 rows updated.
+10)Change the city of the salesman to Pune.
+SQL> update salesman_master set city='Pune' ;
+
+4 rows updated.
+11)Delete all salesmen from the Salesman_Master whose salaries are equal to Rs. 3500.
+SQL> delete from salesman_master where salamt=3500;
+
+1 row deleted.
+12)Delete all products from Product_Master where the quantity on hand is equal to 100.
+  SQL> delete from product_master where qtyonhand=100;
+
+3 rows deleted.
+
+SQL>
+13)Delete from Client_Master where the column state holds the value ‘Tamil Nadu’.
+SQL> delete from client_master where state='Tamil Nadu';
+1 row deleted.                     
+14)Add a column called ‘Telephone’ of data type ‘number’ and size = ‘10’ to the Client_Master table.
+SQL> ALTER TABLE client_master ADD Telephone number(10);
+
+Table altered.
+
+SQL>
+15) Change the size of SellPrice column in Product_Master to 10,2.
+SQL> ALTER TABLE product_master modify sellprice number(10,2);
+
+Table altered.
+16)Destroy the table Client_Master along with its data.
+SQL> drop table client_master;
+
+Table dropped.
+
+SQL>
+17)Change the name of the Salesman_Master table to sman_mast.
+SQL> rename salesman_master to sman_mast;
+Table renamed.
+                 SQL>
