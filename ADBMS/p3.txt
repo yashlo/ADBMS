@@ -1,0 +1,78 @@
+1)
+Take the employee number from the user , if it is already into the table then, calculate the HRA , DA, and Net salary. (HRA 10%) DA = 60% Net salary = Basic + HRA+DA.
+Hint : use count() function to check empno is in table or not.
+declare  
+ x number;
+ flag NUMBER;
+ sal NUMBER;
+ hra NUMBER;
+ da NUMBER;
+ net NUMBER;
+begin  
+ dbms_output.put_line('Enter Employee Number  : ' || :x);
+ select count(*) into flag from employee where eid = :x;
+ select salary into sal from employee where eid = :x;
+if flag > 0 then
+   dbms_output.put_line('Existed');
+   hra := sal * 0.10;
+   da := sal * 0.60;
+   net := sal + hra + da;
+   dbms_output.put_line('HRA : ' || hra);
+   dbms_output.put_line('DA : ' || da);
+   dbms_output.put_line('NET SALARY  : ' || net);
+else 
+    dbms_output.put_line('Not');
+end if;
+end;
+2)
+Take the empno from the user, if salary less than 10,000 print massage less salary
+Salary > 10,000 and Salary < 30,000 then print massage medium salary
+Salary >30,000 and Salary < 60,000 then print massage high salary
+Salary > 60,000 then print massage very high salary.
+declare  
+ x NUMBER;
+ flag NUMBER;
+ sal NUMBER;
+
+begin  
+ dbms_output.put_line('Enter Employee Number  : ' || :x);
+ select count(*) into flag from employee where eid = :x;
+ select salary into sal from employee where eid = :x;
+
+if flag > 0 then
+ if sal < 10000 then
+   dbms_output.put_line('Low Salary');
+ elsif sal > 10000 and sal < 30000 then
+   dbms_output.put_line('Medium Salary');
+ elsif  sal > 30000 and sal < 60000 then
+   dbms_output.put_line('High Salary');
+ elsif  sal > 60000 then
+   dbms_output.put_line('Very High Salary');
+ else
+   dbms_output.put_line('Not Found');
+ end if;
+else
+ dbms_output.put_line('Not Found');
+end if;
+end;
+3)
+Write a pl/sql block using case which check the month of hiredate of given empno. And print month in word format e.g January ,march,july) use while loop for repetition of input,
+Hint : select extract(year from hiredate) from emp;
+
+4)
+Find the reverse of the number which is input by the user.
+DECLARE
+num number;
+rev number;
+begin
+rev := 0;
+num :=:Enterthenumber;
+ while num > 0 LOOP
+
+   rev := (rev*10) + mod(num,10); 
+   num:=floor(num/10);  
+ END LOOP;
+ dbms_output.put_line('Reverse Number ' || rev);
+end;
+
+5)
